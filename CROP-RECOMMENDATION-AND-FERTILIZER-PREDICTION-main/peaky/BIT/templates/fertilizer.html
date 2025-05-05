@@ -1,0 +1,188 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'style3.css' %}"/>
+
+<html>
+    <head>
+        <title>FERTILIZER RECOMMENDATION System</title>
+    </head>
+<style>
+    h1{
+    padding-left: 500px;
+    padding-top:  100px; 
+}
+table{
+    padding-left: 1cm;
+    padding-right: 1cm;
+}
+td{
+    color: rgb(62, 33, 48);
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: bold;
+}
+h1{
+    color: blanchedalmond;
+}
+.translate-btn {
+            position: fixed; /* Position the button */
+            top: 20px; /* Adjust top position */
+            right: 20px; /* Adjust right position */
+            background-color: #007bff; /* Set button background color */
+            color: #fff; /* Set button text color */
+            border: none; /* Remove button border */
+            border-radius: 5px; /* Add border radius */
+            padding: 10px 20px; /* Add padding to the button */
+            cursor: pointer; /* Set cursor to pointer on hover */
+            z-index: 999; /* Set z-index to ensure the button is above other elements */
+        }
+
+        .translate-btn:hover {
+            background-color: #0056b3; /* Change background color on hover */
+        }
+
+        #translator-container {
+            display: none; /* Initially hide translator container */
+            position: fixed; /* Position the container */
+            top: 70px; /* Adjust top position */
+            right: 20px; /* Adjust right position */
+            z-index: 1000; /* Ensure the translator is on top */
+            background-color: #fff; /* Set background color */
+            padding: 10px; /* Add padding */
+            border-radius: 5px; /* Add border radius */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add box shadow */
+        }
+</style>
+<body class="sys">
+    <h1 style="padding-top: 100px;padding-left: 500px">FERTILIZER RECOMMENDATION SYSTEM</h1>
+   <div >
+     <form action="{% url 'result2' %} " >
+        {% csrf_token %}
+        <table class="gabe">
+            <tr>
+                <td>
+                    TEMPERATURE(℃)
+                </td>
+                <td>
+                    <input type='text' required name='TEMPERATURE'>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    HUMIDITY(%)
+                </td>
+                <td>
+                    <input type="text"  required name='HUMIDITY'>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    MOISTURE(%)
+                </td>
+                <td>
+                    <input type='text'  required name='MOISTURE'>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="SOILTYPE">SOILTYPE</label> 
+                </td>
+                <td>
+                    <select id="SOILTYPE" required name="SOILTYPE">
+                        <option value="0">BLACKY</option>
+                        <option value="1">Clayey</option>
+                        <option value="2">Loamy</option>
+                        <option value="3">Red</option>
+                        <option value="4">Sandy</option>
+                      </select>
+                </td>
+            </tr>
+            <tr>j
+                <td>
+                    <label for="CROPTYPE">CROPTYPE</label> 
+                </td>
+                <td>
+                    <select id="CROPTYPE" required name="CROPTYPE">
+                        <option value="0">Barley</option>
+                        <option value="1">Cotton</option>
+                        <option value="2">Ground Nuts</option>
+                        <option value="3">Maize</option>
+                        <option value="4">Millets</option>
+                        <option value="5">Oil seeds</option>
+                        <option value="6">Paddy</option>
+                        <option value="7"> Pulses </option>
+                        <option value="8">Sugarcane</option>
+                        <option value="9">Tobacco </option>
+                        <option value="10">Wheat</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    NITROGEN(%)
+                </td>
+                <td>
+                    <input type='text'  required name='NITROGEN'>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    POTASSIUM(%)
+                </td>
+                <td>
+                    <input type='text' required name='POTASSIUM'>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    PHOSPHORUS(%)
+                </td>
+                <td>
+                    <input type='text' required name='PHOSPHORUS'>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <center><input type="submit" name="" value="SUBMIT" class="subm"></center>
+                </td>
+            </tr>
+
+        </table>
+    </form>
+</div>
+<p class="outp">FERTILIZER NAME : {{ans2}}</p>
+
+<button id="translate-button" class="translate-btn" onclick="toggleTranslator()">TRANSLATE</button>
+
+<div id="translator-container">
+    <!-- Translator -->
+    <div id="google_translate_element"></div>
+</div>
+
+<!-- Translator Script -->
+<script type="text/javascript">
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'en,hi,kn,ml,mr,ta,te', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+    }
+
+    // Function to toggle translator visibility
+    function toggleTranslator() {
+        var translatorContainer = document.getElementById('translator-container');
+        translatorContainer.style.display = translatorContainer.style.display === 'block' ? 'none' : 'block';
+    }
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+     <script>
+    window.embeddedChatbotConfig = {
+    chatbotId: "z8KsGxKcU_KqsBD3qiCdU",
+    domain: "www.chatbase.co"
+    }
+    </script>
+    <script
+    src="https://www.chatbase.co/embed.min.js"
+    chatbotId="z8KsGxKcU_KqsBD3qiCdU"
+    domain="www.chatbase.co"
+    defer>
+    </script>
+</body>
+</html>
+
+</html>

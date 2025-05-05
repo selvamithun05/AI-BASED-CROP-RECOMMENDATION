@@ -1,0 +1,147 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'style3.css' %}"/>
+<html>
+<head>
+    <title>RECOMMENDATION SYSTEM</title>
+    <style>
+        body {
+            margin: 0; /* Remove default margin */
+            padding: 0; /* Remove default padding */
+            font-family: 'Times New Roman', Times, serif; /* Use a common font family */
+            background-color: #f4f4f4; /* Set a background color */
+        }
+
+        h1 {
+            text-align: center; /* Center align the heading */
+            padding: 50px 0; /* Add padding to the heading */
+            text-shadow: 2px 2px 4px rgba(245, 245, 245, 0.4); /* Add text shadow for 3D effect */
+            color: #eceaea; /* Set heading color */
+        }
+        
+        .form-container {
+            max-width: 600px; /* Set maximum width for the form container */
+            margin: 0 auto; /* Center align the form container */
+        }
+        
+        table {
+            width: 100%; /* Set table width to 100% */
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Add box shadow for 3D effect */
+            background-color: #fff; /* Set table background color */
+            border-radius: 10px; /* Add border radius */
+            padding: 20px; /* Add padding to the table */
+        }
+        
+        td {
+            color: #333; /* Set table cell text color */
+            font-weight: bold;
+        }
+        
+        .translate-btn {
+            position: fixed; /* Position the button */
+            top: 20px; /* Adjust top position */
+            right: 20px; /* Adjust right position */
+            background-color: #007bff; /* Set button background color */
+            color: #fff; /* Set button text color */
+            border: none; /* Remove button border */
+            border-radius: 5px; /* Add border radius */
+            padding: 10px 20px; /* Add padding to the button */
+            cursor: pointer; /* Set cursor to pointer on hover */
+            z-index: 999; /* Set z-index to ensure the button is above other elements */
+        }
+
+        .translate-btn:hover {
+            background-color: #0056b3; /* Change background color on hover */
+        }
+
+        #translator-container {
+            display: none; /* Initially hide translator container */
+            position: fixed; /* Position the container */
+            top: 70px; /* Adjust top position */
+            right: 20px; /* Adjust right position */
+            z-index: 1000; /* Ensure the translator is on top */
+            background-color: #fff; /* Set background color */
+            padding: 10px; /* Add padding */
+            border-radius: 5px; /* Add border radius */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add box shadow */
+        }
+    </style>
+</head>
+
+<body class="sys">
+    <h1>CROP RECOMMENDATION SYSTEM</h1>
+    <div class="form-container">
+        <form action="{% url 'result' %}">
+            {% csrf_token %}
+            <table class="gabe">
+                <tr>
+                    <td>NITROGEN(%)</td>
+                    <td><input type='text' required name='NITROGEN'></td>
+                </tr>
+                <tr>
+                    <td>PHOSPHORUS(%)</td>
+                    <td><input type="text" required name='PHOSPHORUS'></td>
+                </tr>
+                <tr>
+                    <td>POTASSIUM(%)</td>
+                    <td><input type='text' required name='POTASSIUM'></td>
+                </tr>
+                <tr>
+                    <td>TEMPERATURE(℃)</td>
+                    <td><input type='text' required name='TEMPERATURE'></td>
+                </tr>
+                <tr>
+                    <td>HUMIDITY(%)</td>
+                    <td><input type='text' required name='HUMIDITY'></td>
+                </tr>
+                <tr>
+                    <td>Ph(0-14)</td>
+                    <td><input type='text' required name='PH'></td>
+                </tr>
+                <tr>
+                    <td>RAINFALL(cms)</td>
+                    <td><input type='text' required name='RAINFALL'></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><center><input type="submit" value="SUBMIT" class="subm"></center></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <p class="outp">CROP NAME : {{ans}}</p>
+
+    <!-- Translate button -->
+    <button id="translate-button" class="translate-btn" onclick="toggleTranslator()">TRANSLATE</button>
+
+    <!-- Translator Container -->
+    <div id="translator-container">
+        <!-- Translator -->
+        <div id="google_translate_element"></div>
+    </div>
+
+    <!-- Translator Script -->
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'en,hi,kn,ml,mr,ta,te', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+        }
+
+        // Function to toggle translator visibility
+        function toggleTranslator() {
+            var translatorContainer = document.getElementById('translator-container');
+            translatorContainer.style.display = translatorContainer.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+     <script>
+    window.embeddedChatbotConfig = {
+    chatbotId: "z8KsGxKcU_KqsBD3qiCdU",
+    domain: "www.chatbase.co"
+    }
+    </script>
+    <script
+    src="https://www.chatbase.co/embed.min.js"
+    chatbotId="z8KsGxKcU_KqsBD3qiCdU"
+    domain="www.chatbase.co"
+    defer>
+    </script>
+</body>
+</html>
